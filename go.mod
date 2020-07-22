@@ -1,4 +1,4 @@
-module mvdan.cc/xurls/v2
+module github.com/malview/xurls/v2
 
 go 1.14
 
