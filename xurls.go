@@ -69,7 +69,7 @@ func anyOf(strs ...string) string {
 func EmailMatch() (*regexp.Regexp, error) {
 	punycode := `xn--[a-z0-9-]+`
 	knownTLDs := anyOf(append(TLDs, PseudoTLDs...)...)
-	site := domain + `(?i)(` + punycode + `|` + knownTLDs + `)(?-i)`
+	site := domain + `(?i)(` + punycode + `|` + knownTLDs + `\b)(?-i)`
 	local_part := `[a-z0-9._%+-]+@`
 
 	strictMatching := `(?i)(` + local_part + site + `)`
