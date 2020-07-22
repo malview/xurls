@@ -9,7 +9,7 @@
     "go.autocompleteUnimportedPackages": true,
     "go.useLanguageServer": true,
     "go.toolsEnvVars": {
-      "GO111MODULE": "on"
+      "GO111MODULE": "auto"
     },
     "go.lintTool": "golangci-lint",
     "go.formatTool": "goimports",
