@@ -72,7 +72,7 @@ func EmailMatch() (*regexp.Regexp, error) {
 	site := domain + `(?i)(` + punycode + `|` + knownTLDs + `)(?-i)`
 	local_part := `[a-z0-9._%+-]+@`
 
-	strictMatching := `(?i)(` + local_part + site
+	strictMatching := `(?i)(` + local_part + site + `)`
 	re, err := regexp.Compile(strictMatching)
 	if err != nil {
 		return nil, err
