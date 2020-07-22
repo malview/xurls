@@ -5,6 +5,7 @@ package main
 
 import (
 	"encoding/csv"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -34,7 +35,10 @@ func schemeList() []string {
 	}
 	defer resp.Body.Close()
 	r := csv.NewReader(resp.Body)
-	r.Read() // ignore headers
+	_, err = r.Read() // ignore headers
+	if err != nil {
+		fmt.Println(err)
+	}
 	schemes := make([]string, 0)
 	for {
 		record, err := r.Read()
