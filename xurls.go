@@ -66,6 +66,21 @@ func anyOf(strs ...string) string {
 	return b.String()
 }
 
+func EmailMatch() (*regexp.Regexp, error) {
+	punycode := `xn--[a-z0-9-]+`
+	knownTLDs := anyOf(append(TLDs, PseudoTLDs...)...)
+	site := domain + `(?i)(` + punycode + `|` + knownTLDs + `)(?-i)`
+	local_part := `[a-z0-9._%+-]+@`
+
+	strictMatching := `(?i)(` + local_part + site
+	re, err := regexp.Compile(strictMatching)
+	if err != nil {
+		return nil, err
+	}
+	re.Longest()
+	return re, nil
+}
+
 func strictExp() string {
 	schemes := `(` + anyOf(Schemes...) + `://|` + anyOf(SchemesNoAuthority...) + `:)`
 	return `(?i)` + schemes + `(?-i)` + pathCont
